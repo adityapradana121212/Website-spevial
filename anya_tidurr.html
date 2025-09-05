@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anyaa tidurr yaaa</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #ffd6e8, #ffb6d9, #ff9fcf);
+    overflow: hidden;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+
+  h1 {
+    position: relative;
+    z-index: 5;
+    font-size: 3em;
+    color: transparent;
+    background: linear-gradient(90deg, #ff5fa9, #ff94c2, #ff5fa9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shimmer 3s infinite linear;
+    text-shadow: 2px 2px 10px #fff;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  /* Bintang jatuh pink */
+  .star {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 
+                       68% 57%, 79% 91%, 50% 70%, 
+                       21% 91%, 32% 57%, 2% 35%, 
+                       39% 35%);
+    animation: fall linear infinite;
+    opacity: 0.8;
+    z-index: 1;
+    box-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66b3;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity:1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
+  }
+
+  /* Bulan tersenyum */
+  .moon {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+    width: 80px;
+    height: 80px;
+    background: #ffe6f2;
+    border-radius: 50%;
+    box-shadow: inset -10px -10px 0 #ffb6d9;
+    z-index: 2;
+  }
+
+  .moon::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    border-bottom: 3px solid #b30059;
+    border-radius: 50%;
+    top: 55px;
+    left: 25px;
+  }
+
+  .moon::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #b30059;
+    border-radius: 50%;
+    top: 30px;
+    left: 20px;
+    box-shadow: 25px 0 #b30059;
+  }
+
+  /* Awan pink */
+  .cloud {
+    position: absolute;
+    bottom: 80px;
+    left: -200px;
+    width: 140px;
+    height: 70px;
+    background: #ffe6f2;
+    border-radius: 50px;
+    animation: moveCloud 35s linear infinite;
+    z-index: 3;
+    box-shadow: 0 0 20px #ffb6d9;
+  }
+
+  .cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: #ffe6f2;
+    width: 100px;
+    height: 100px;
+    top: -30px;
+    border-radius: 50%;
+  }
+
+  .cloud::before {
+    left: -50px;
+  }
+
+  .cloud::after {
+    left: 70px;
+  }
+
+  @keyframes moveCloud {
+    from { left: -200px; }
+    to { left: 110%; }
+  }
+</style>
+</head>
+<body>
+  <h1>Anyaa tidurr yaaa</h1>
+
+  <div class="moon"></div>
+  <div class="cloud"></div>
+  <div class="cloud" style="bottom:150px; animation-duration:40s;"></div>
+  <div class="cloud" style="bottom:220px; animation-duration:50s;"></div>
+
+  <script>
+    function createStar() {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.left = Math.random() * window.innerWidth + "px";
+      star.style.animationDuration = 3 + Math.random() * 4 + "s";
+      document.body.appendChild(star);
+
+      setTimeout(() => {
+        star.remove();
+      }, 7000);
+    }
+
+    setInterval(createStar, 500);
+  </script>
+</body>
+</html>
